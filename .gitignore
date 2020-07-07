@@ -121,3 +121,6 @@ vendor/
 
 # Client folder
 #/client
+
+# Public (build) folder
+/public
