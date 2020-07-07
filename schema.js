@@ -1,6 +1,8 @@
 const axios = require("axios");
 
-const SpacexEndPointURL = "https://api.spacexdata.com/v3/launches";
+const SpacexEndPointURL = "https://api.spacexdata.com/v3/";
+const SpacexEndPointLaunchesURL = SpacexEndPointURL + "/launches";
+const SpacexEndPointRocketsURL = SpacexEndPointURL + "/rockets";
 
 const {
     GraphQLObjectType,
@@ -45,7 +47,7 @@ const RootQuery = new GraphQLObjectType({
             type: new GraphQLList(LaunchType),
             resolve: () => {
                 return axios
-                    .get(SpacexEndPointURL)
+                    .get(SpacexEndPointLaunchesURL)
                     .then(res => res.data);
             }
         },
@@ -56,10 +58,29 @@ const RootQuery = new GraphQLObjectType({
             },
             resolve: (parent, args) => {
                 return axios
-                    .get(SpacexEndPointURL + `/${args.flight_number}`)
+                    .get(SpacexEndPointLaunchesURL + `/${args.flight_number}`)
                     .then(res => res.data);
             }
-        }
+        },
+        rockets: {
+            type: new GraphQLList(RocketType),
+            resolve: () => {
+                return axios
+                    .get(SpacexEndPointRocketsURL)
+                    .then(res => res.data);
+            }
+        },
+        rocket: {
+            type: RocketType,
+            args: { 
+                rocket_id: { type: GraphQLInt}
+            },
+            resolve: (parent, args) => {
+                return axios
+                    .get(SpacexEndPointRocketsURL + `/${args.rocket_id}`)
+                    .then(res => res.data);
+            }
+        },
     })
 });
 
