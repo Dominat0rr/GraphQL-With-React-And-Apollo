@@ -17,11 +17,11 @@ const LaunchType = new GraphQLObjectType({
     name: "Launch",
     description: "Launch Object",
     fields: () => ({
-        flight_number: { type: GraphQLNonNull(GraphQLInt) },
-        mision_name: { type: GraphQLNonNull(GraphQLString) },
-        launch_year: { type: GraphQLNonNull(GraphQLString) },
-        launch_date_local: { type: GraphQLNonNull(GraphQLString) },
-        launch_success: { type: GraphQLNonNull(GraphQLBoolean) },
+        flight_number: { type: GraphQLInt },
+        mission_name: { type: GraphQLString },
+        launch_year: { type: GraphQLString },
+        launch_date_local: { type: GraphQLString },
+        launch_success: { type: GraphQLBoolean },
         rocket: { type: RocketType }
     })
 });
@@ -30,9 +30,9 @@ const RocketType = new GraphQLObjectType({
     name: "Rocket",
     description: "Rocket Object",
     fields: () => ({
-        rocket_id: { type: GraphQLNonNull(GraphQLString) },
-        rocket_name: { type: GraphQLNonNull(GraphQLString) },
-        rocket_type: { type: GraphQLNonNull(GraphQLString) }
+        rocket_id: { type: GraphQLString },
+        rocket_name: { type: GraphQLString },
+        rocket_type: { type: GraphQLString }
     })
 });
 
