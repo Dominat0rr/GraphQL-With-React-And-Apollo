@@ -43,9 +43,20 @@ const RootQuery = new GraphQLObjectType({
     fields: () => ({
         launches: {
             type: new GraphQLList(LaunchType),
-            resolve: (parent, args) => {
+            resolve: () => {
                 return axios
                     .get(SpacexEndPointURL)
+                    .then(res => res.data);
+            }
+        },
+        launch: {
+            type: LaunchType,
+            args: { 
+                flight_number: { type: GraphQLInt}
+            },
+            resolve: (parent, args) => {
+                return axios
+                    .get(SpacexEndPointURL + `/${args.flight_number}`)
                     .then(res => res.data);
             }
         }
