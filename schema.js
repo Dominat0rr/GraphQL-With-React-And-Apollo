@@ -1,8 +1,8 @@
 const axios = require("axios");
 
 const SpacexEndPointURL = "https://api.spacexdata.com/v3/";
-const SpacexEndPointLaunchesURL = SpacexEndPointURL + "/launches";
-const SpacexEndPointRocketsURL = SpacexEndPointURL + "/rockets";
+const SpacexEndPointLaunchesURL = SpacexEndPointURL + "launches";
+const SpacexEndPointRocketsURL = SpacexEndPointURL + "rockets";
 
 const {
     GraphQLObjectType,

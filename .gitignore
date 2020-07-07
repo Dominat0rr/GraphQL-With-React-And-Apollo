@@ -118,3 +118,6 @@ vendor/
 
 #PhpStorm
 .editorconfig
+
+# Client folder
+#/client
